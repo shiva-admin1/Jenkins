@@ -1,0 +1,32 @@
+name: Run Linux Commands
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  run-linux-commands:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Print Workspace Info
+        run: |
+          echo "Workspace directory:"
+          pwd
+          echo "List contents:"
+          ls -lah
+
+      - name: Run Basic Linux Commands
+        run: |
+          echo "Current user: $(whoami)"
+          echo "Disk usage:"
+          df -h
+          echo "Uptime:"
+          uptime
+          echo "Environment variables:"
+          printenv
+
